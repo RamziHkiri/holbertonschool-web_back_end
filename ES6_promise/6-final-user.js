@@ -3,7 +3,7 @@ import uploadPhoto from './5-photo-reject';
 
 export default async function handleProfileSignup(firstName , lastName, fileName) {
   const signingUser = await signUpUser(firstName, lastName).then((data) => ({
-    status: 'settled',
+    status: 'fulfilled',
     value: data,
   }));
     
