@@ -43,4 +43,3 @@ class Server:
         indexes = index_range(page=page, page_size=page_size)
         self.dataset()
         return self.__dataset[indexes[0]: indexes[1]]
-    
