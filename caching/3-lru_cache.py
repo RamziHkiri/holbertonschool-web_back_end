@@ -29,6 +29,7 @@ class LRUCache(BaseCaching):
                 del self.cache_data[self.minKey]
                 del self.preorities[self.minKey]
                 print('DISCARD: {:s}'.format(self.minKey))
+                print(self.preorities)
                 
         
         
@@ -38,6 +39,9 @@ class LRUCache(BaseCaching):
          return the value in self.cache_data linked to key
         """
         if key is not None and key in self.cache_data:
+            self.preority += 1
+            self.preorities[key] = self.preority
             return self.cache_data[key]
+        
         else:
             return None   
