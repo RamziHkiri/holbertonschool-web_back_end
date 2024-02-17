@@ -13,9 +13,9 @@ class LRUCache(BaseCaching):
     def __init__(self):
         """initilize instance"""
         super().__init__()
-        self.preorities ={}
+        self.preorities = {}
         self.preority = 0
-        self.minKey=''
+        self.minKey = ''
 
     def put(self, key, item):
         """you must discard the least recently used item (LRU algorithm)"""
@@ -23,17 +23,15 @@ class LRUCache(BaseCaching):
             self.preority += 1
             self.cache_data[key] = item
             self.preorities[key] = self.preority
-            
+
             if len(self.preorities) > BaseCaching.MAX_ITEMS:
-                self.minKey = min(self.preorities, key=lambda k: self.preorities[k])
+                self.minKey = min(self.preorities,
+                                  key=lambda k: self.preorities[k])
                 del self.cache_data[self.minKey]
                 del self.preorities[self.minKey]
                 print('DISCARD: {:s}'.format(self.minKey))
                 print(self.preorities)
-                
-        
-        
-        
+
     def get(self, key):
         """
          return the value in self.cache_data linked to key
@@ -42,6 +40,5 @@ class LRUCache(BaseCaching):
             self.preority += 1
             self.preorities[key] = self.preority
             return self.cache_data[key]
-        
         else:
-            return None   
+            return None
