@@ -30,7 +30,6 @@ class LRUCache(BaseCaching):
                 del self.cache_data[self.minKey]
                 del self.preorities[self.minKey]
                 print('DISCARD: {:s}'.format(self.minKey))
-                print(self.preorities)
 
     def get(self, key):
         """
