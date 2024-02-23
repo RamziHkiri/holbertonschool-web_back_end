@@ -35,4 +35,4 @@ def test_unauthorized() -> str:
 @app_views.route('/forbidden', methods=['GET'],  strict_slashes=False)
 def test_unauthorized() -> str:
     """Error handler: forbidden"""
-    return abort(401)
+    return abort(403)
