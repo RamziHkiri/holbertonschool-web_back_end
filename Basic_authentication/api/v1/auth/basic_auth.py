@@ -53,9 +53,8 @@ class BasicAuth(Auth):
                                      user_email: str, user_pwd: str
                                      ) -> TypeVar('User'):
         """get user credentials"""
-        if user_email is None or not isinstance(user_email, str):
-            return None
-        if user_pwd is None or not isinstance(user_pwd, str):
+        if user_email is None or type(user_email) != str or\
+           user_pwd is None or type(user_pwd) != str:
             return None
 
         get_users = User.search({'email': user_email})
@@ -69,3 +68,39 @@ class BasicAuth(Auth):
             if user.is_valid_password(user_pwd):
                 return user
         return None
+
+    def current_user(self, request=None) -> TypeVar('User'):
+        """
+            Overload func to get the info of the user
+
+            Args:
+                request: current user
+
+            Return:
+                Info of the current user or users, otherwise None
+        """
+        header: str = self.authorization_header(request)
+
+        if header is None:
+            return None
+
+        auth_head64: str = self.extract_base64_authorization_header(header)
+
+        if auth_head64 is None:
+            return None
+
+        decode_auth: str = self.decode_base64_authorization_header(auth_head64)
+
+        if decode_auth is None:
+            return decode_auth
+
+        mail: str
+        passwd: str
+        mail, passwd = self.extract_user_credentials(decode_auth)
+
+        if mail is None or passwd is None:
+            return None
+
+        user_curr = self.user_object_from_credentials(mail, passwd)
+
+        return user_curr
