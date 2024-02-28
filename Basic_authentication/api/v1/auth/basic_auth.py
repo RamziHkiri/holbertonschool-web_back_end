@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 """class BasicAuth enherit from Auth"""
-from typing import TypeVar
+from typing import List, TypeVar
 from models.user import User
 from api.v1.auth.auth import Auth
 from base64 import b64decode
@@ -57,9 +57,11 @@ class BasicAuth(Auth):
             return None
         if user_pwd is None or not isinstance(user_pwd, str):
             return None
+
         get_users = User.search({'email': user_email})
 
         try:
+            found_users: List[TypeVar('User')]
             found_users = User.search({'email': user_email})
         except Exception:
             return None
