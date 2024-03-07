@@ -2,7 +2,8 @@
 """class SessionAuth that inherits from Auth"""
 
 
-from typing import Dict
+from typing import Dict, TypeVar
+from models.user import User
 from api.v1.auth.auth import Auth
 import uuid
 
@@ -10,7 +11,7 @@ import uuid
 class SessionAuth(Auth):
     """class SessionAuth"""
 
-    user_id_by_session_id: Dict = {}
+    user_id_by_session_id = {}
 
     def create_session(self, user_id: str = None) -> str:
         """crate session"""
@@ -26,3 +27,10 @@ class SessionAuth(Auth):
         if session_id is None or not isinstance(session_id, str):
             return None
         return self.user_id_by_session_id.get(session_id)
+
+    def current_user(self, request=None):
+        """get the current user"""
+        session_id = self.session_cookie(request)
+        user_id = self.user_id_for_session_id(session_id)
+        user = User.get(user_id)
+        return user
