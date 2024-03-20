@@ -1,4 +1,6 @@
 #!/usr/bin/env python3
+""" Route module for the API - Basic Flask app """
+
 from flask import Flask, render_template
 from os import getenv
 
