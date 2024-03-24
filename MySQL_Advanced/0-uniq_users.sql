@@ -3,8 +3,8 @@
 --  Your script can be executed on any database
 ----------------------------------------------------------------
 
-CREATE TABLE If NOT EXISTS 'users' (
-    'id' INTEGER PRIMARY KEY AUTOINCREMENT NOT NULL,
-    'email'varchar(255) NOT NULL UNIQUE,
-    'name' varchar(255) NOT NULL
-)
+CREATE TABLE Users(
+    id int not null PRIMARY KEY,
+    email varchar(255) not NULL UNIQUE,
+    name varchar(255),
+);
