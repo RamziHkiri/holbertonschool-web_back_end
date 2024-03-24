@@ -3,8 +3,8 @@
 --  Your script can be executed on any database
 ----------------------------------------------------------------
 
-CREATE TABLE Users(
-    id int not null PRIMARY KEY,
-    email varchar(255) not NULL UNIQUE,
-    name varchar(255),
+CREATE TABLE users (
+    id SERIAL PRIMARY KEY,
+    email VARCHAR(255) NOT NULL UNIQUE,
+    name VARCHAR(255)
 );
