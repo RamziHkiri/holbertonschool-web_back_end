@@ -1,10 +1,11 @@
 const assert = require('assert');
-const calculateNumber = require('./0-calcul.js');
+const calculateNumber = require('./1-calcul.js');
 
 describe('calculateNumber', () => {
   it('checks the output with valid type SUM', function () {
     assert.strictEqual(calculateNumber('SUM', 1, 3), 4);
     assert.strictEqual(calculateNumber('SUM',1, 3.7), 5);
+
   });
   it('checks the output with valid type SUBTRACT', function() {
     assert.strictEqual(calculateNumber('SUBTRACT', -1, 3), -4);
