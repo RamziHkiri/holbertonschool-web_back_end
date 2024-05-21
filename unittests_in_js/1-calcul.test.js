@@ -13,4 +13,7 @@ describe('calculateNumber', function () {
   it('should round and divide two numbers', function () {
     assert.strictEqual(calculateNumber('DIVIDE', 4, 2), 2);
   });
+  it('should return Error if the rounded divisor is 0', function() {
+    assert.strictEqual(calculateNumber('DIVIDE', 1.4, 0), 'Error');
+  });
 });
